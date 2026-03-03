@@ -1,0 +1,20 @@
+# OS files
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Error logs
+error_log
+*.log
+deploy.log
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Claude Code
+.claude/
+
+# Environment files
+.env

@@ -1,0 +1,10 @@
+# DEV MODE: Blocking all indexing during development.
+#
+# AT LAUNCH: Replace this file with:
+# User-Agent: *
+# Disallow: /build/
+#
+# Sitemap: https://[domain.com]/sitemap.xml
+
+User-Agent: *
+Disallow: /

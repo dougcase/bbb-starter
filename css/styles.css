@@ -1,0 +1,417 @@
+/* ==========================================================================
+   [Site Name] — Site Styles
+   Bootstrap 5.3.8 | Bootstrap Icons 1.11.3
+   Created: [YYYY-MM-DD]
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CSS Custom Property Tokens
+   ========================================================================== */
+
+:root {
+  /* Brand Colors */
+  --color-primary:    #[hex];   /* Main brand color — nav, headings */
+  --color-secondary:  #[hex];   /* Accent color */
+  --color-dark:       #[hex];   /* Dark backgrounds, footer */
+  --color-light:      #[hex];   /* Light backgrounds, panels */
+
+  /* Text */
+  --color-text:       #[hex];   /* Body copy */
+  --color-text-light: #[hex];   /* Muted / secondary text */
+  --color-white:      #ffffff;
+
+  /* Interactive */
+  --color-cta:        #[hex];   /* Primary button background */
+  --color-cta-hover:  #[hex];   /* Primary button hover state */
+  --color-focus:      #ffdd00;  /* Focus indicator — GOV.UK yellow — do not change */
+
+  /* Borders */
+  --color-border:     #[hex];
+
+  /* Typography */
+  --font-heading: '[Font Name]', sans-serif;
+  --font-body:    '[Font Name]', sans-serif;
+  --text-base:    1rem;       /* 16px */
+  --text-lg:      1.125rem;
+  --text-xl:      1.25rem;
+  --text-2xl:     1.5rem;
+  --text-3xl:     1.875rem;
+  --text-4xl:     2.25rem;
+}
+
+
+/* ==========================================================================
+   2. Base Styles
+   ========================================================================== */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-dark);
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-cta-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ==========================================================================
+   3. Skip Link
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--color-focus);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  top: 0;
+}
+
+
+/* ==========================================================================
+   4. Focus-Visible Baseline
+   Must appear AFTER all theme/component styles.
+   ========================================================================== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-focus) !important;
+  outline-offset: 2px !important;
+}
+
+/* Logo: focus on the img child, not the link wrapper */
+.navbar-brand:focus-visible {
+  outline: none !important;
+}
+
+.navbar-brand:focus-visible img {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Image links: outline wraps the image */
+a:has(img):not(.navbar-brand):focus-visible {
+  outline: 3px solid var(--color-focus) !important;
+  outline-offset: 4px !important;
+}
+
+/* Text links and buttons: high-contrast focus state */
+a:focus-visible:not(:has(img)):not(.navbar-brand),
+button:focus-visible,
+.btn:focus-visible,
+input[type="submit"]:focus-visible {
+  background: #fff !important;
+  color: #000 !important;
+  box-shadow: inset 0 0 0 1px #000 !important;
+  text-shadow: none !important;
+}
+
+/* Bootstrap buttons: remove default BS focus ring */
+.btn:focus-visible {
+  box-shadow: inset 0 0 0 1px #000 !important;
+}
+
+
+/* ==========================================================================
+   5. Content Link Underlines (WCAG link-in-text-block)
+   Target ALL content areas, not just <p> tags.
+   ========================================================================== */
+
+main a:not(.btn):not(.nav-link):not(.navbar-brand):not(.back-to-top) {
+  text-decoration: underline;
+}
+
+main a:not(.btn):not(.nav-link):not(.navbar-brand):not(.back-to-top):hover {
+  text-decoration: none;
+}
+
+
+/* ==========================================================================
+   6. External Link + PDF Link Icons (Bootstrap Icons)
+   Applied via JS auto-detection in scripts.js
+   ========================================================================== */
+
+/* External link icon — box-arrow-up-right */
+.external-link::after {
+  content: "\f1c5";
+  font-family: "bootstrap-icons";
+  margin-left: 4px;
+  font-size: 0.75em;
+  text-decoration: none !important;
+  display: inline-block;
+}
+
+/* PDF link icon — file-earmark-pdf */
+.pdf-link::after {
+  content: "\f32b";
+  font-family: "bootstrap-icons";
+  margin-left: 4px;
+  font-size: 0.85em;
+  color: #ea4335;
+  text-decoration: none !important;
+  display: inline-block;
+}
+
+
+/* ==========================================================================
+   7. Navbar
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: var(--color-white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar {
+  padding: 0.75rem 0;
+}
+
+.navbar-brand img {
+  height: 40px;
+  width: auto;
+}
+
+.nav-link {
+  color: var(--color-text);
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--color-primary);
+}
+
+/* Dropdown: open on hover/focus-within on desktop — parent link navigates */
+@media (min-width: 992px) {
+  .navbar-nav .dropdown:hover > .dropdown-menu,
+  .navbar-nav .dropdown:focus-within > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+
+  .dropdown-toggle::after {
+    margin-left: 0.35em;
+  }
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.25rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: var(--color-light);
+  color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   8. Footer
+   ========================================================================== */
+
+.site-footer {
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-heading {
+  font-size: var(--text-lg);
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.footer-contact {
+  color: rgba(255, 255, 255, 0.8);
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.footer-contact a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   9. Hero Section
+   ========================================================================== */
+
+.hero {
+  padding: 5rem 0;
+  background: var(--color-light);
+}
+
+.hero h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: 1rem;
+}
+
+.hero .lead {
+  font-size: var(--text-xl);
+  color: var(--color-text-light);
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 6rem 0;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
+
+
+/* ==========================================================================
+   10. Back to Top Button
+   ========================================================================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+  font-size: 1.25rem;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--color-cta-hover);
+  color: var(--color-white);
+}
+
+
+/* ==========================================================================
+   11. Utility Classes
+   ========================================================================== */
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+.section-padding-sm {
+  padding: 2.5rem 0;
+}
+
+.bg-light-custom {
+  background: var(--color-light);
+}
+
+.text-muted-custom {
+  color: var(--color-text-light);
+}
+
+
+/* ==========================================================================
+   12. Primary CTA Button Override
+   Uses CSS tokens instead of Bootstrap's default blue.
+   ========================================================================== */
+
+.btn-primary {
+  background-color: var(--color-cta);
+  border-color: var(--color-cta);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-cta-hover);
+  border-color: var(--color-cta-hover);
+  color: var(--color-white);
+}
