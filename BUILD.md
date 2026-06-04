@@ -426,6 +426,7 @@ Build in this order. Each component complete and tested before moving to the nex
 - [ ] Business name, address, phone — pulled from `business-config.php`
 - [ ] Phone as `<a href="tel:[number]">` clickable link
 - [ ] Copyright: `&copy; <?php echo date('Y'); ?> [Business Name]`
+- [ ] Site version stamp: `<p class="site-version">v1.0.0</p>` in the copyright band, lower-left (inherits the muted footer color — re-verify AA against `--color-dark`). Start at `v1.0.0`; bump on each CSS/JS ship alongside the `?v=` cache-buster.
 - [ ] Navigation links (abbreviated)
 - [ ] Accessibility Statement link
 - [ ] Privacy Policy link

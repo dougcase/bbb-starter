@@ -48,6 +48,7 @@
       <!-- Footer Bottom -->
       <div class="footer-bottom">
         <p>&copy; <?php echo date('Y'); ?> <?php echo $business['name']; ?>. All rights reserved.</p>
+        <p class="site-version">v1.0.0</p>
       </div>
 
     </div>
