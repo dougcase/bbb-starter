@@ -426,7 +426,7 @@ Build in this order. Each component complete and tested before moving to the nex
 - [ ] Business name, address, phone — pulled from `business-config.php`
 - [ ] Phone as `<a href="tel:[number]">` clickable link
 - [ ] Copyright: `&copy; <?php echo date('Y'); ?> [Business Name]`
-- [ ] Site version stamp: `<p class="site-version">v1.0.0</p>` in the copyright band, lower-left (inherits the muted footer color — re-verify AA against `--color-dark`). Start at `v1.0.0`; bump on each CSS/JS ship alongside the `?v=` cache-buster.
+- [ ] Site version stamp: `<p class="site-version" aria-label="Site version">[YYMMA]</p>` in the footer copyright band, lower-left (monospace; color verified AA against the band — muted `#999` on dark, `#fff` on a colored band). Format `YYMMA` (year+month+alpha, e.g. `2606A`); bump the alpha on each CSS/JS ship that month, new month resets to `A`. CSS lives in `styles.css`.
 - [ ] Navigation links (abbreviated)
 - [ ] Accessibility Statement link
 - [ ] Privacy Policy link
