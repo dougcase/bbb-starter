@@ -42,7 +42,7 @@
   <link rel="stylesheet" href="/css/bootstrap-icons.min.css">
 
   <!-- Site Styles -->
-  <link rel="stylesheet" href="/css/styles.css?v=20260303">
+  <link rel="stylesheet" href="/css/styles.css?v=20260708">
 
   <!-- Google Analytics (uncomment and replace [GA4-ID] for your project)
   <script async src="https://www.googletagmanager.com/gtag/js?id=[GA4-ID]"></script>
