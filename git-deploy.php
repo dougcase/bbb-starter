@@ -19,7 +19,7 @@ define("BEFORE_PULL", "");                                              // Comma
 define("AFTER_PULL", "");                                               // Command to run after pull (leave empty)
 
 $content = file_get_contents('php://input');
-$json    = json_decode($_POST['payload'], true);
+$json    = !empty($_POST['payload']) ? json_decode($_POST['payload'], true) : json_decode($content, true);
 $file    = fopen(LOGFILE, "a");
 $time    = time();
 $token   = false;
