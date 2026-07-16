@@ -18,3 +18,7 @@ deploy.log
 
 # Environment files
 .env
+
+# Generated build artifacts — rebuilt on every deploy by git-deploy.php AFTER_PULL
+sitemap.xml
+search-index.json

@@ -16,7 +16,7 @@ define("LOGFILE", "deploy.log");                                        // Log f
 define("GIT", "git");                                                   // Path to git executable
 define("MAX_EXECUTION_TIME", 180);                                      // Override for PHP max_execution_time
 define("BEFORE_PULL", "");                                              // Command to run before pull (leave empty)
-define("AFTER_PULL", "");                                               // Command to run after pull (leave empty)
+define("AFTER_PULL", "php " . DIR . "sitemap-generator.php");           // Rebuild sitemap.xml on every deploy (add "&& php ".DIR."search-indexer.php" if the site has search)
 
 $content = file_get_contents('php://input');
 $json    = !empty($_POST['payload']) ? json_decode($_POST['payload'], true) : json_decode($content, true);
