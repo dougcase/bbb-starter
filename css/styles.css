@@ -460,3 +460,145 @@ main a:not(.btn):not(.nav-link):not(.navbar-brand):not(.back-to-top):hover {
 #ez-cookie-manager-button {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35)) !important;
 }
+
+
+/* ==========================================================================
+   14. Slider / Carousel
+   Manual-advance slider: prev/next buttons, dot pagination, keyboard nav, no
+   auto-rotation (WCAG 2.2.2). Ported verbatim from the Risingline Framework
+   (.rl-slider); the only local change is mapping --rl-color-* tokens to this
+   starter's --color-* tokens. JS handler lives in js/scripts.js.
+
+   Desktop: all slides are stacked in one CSS-grid cell and crossfade
+   (dissolve) via opacity; the visibility flip is delayed to the end of the
+   fade so the outgoing slide stays visible while it fades out — a true
+   crossfade, not a fade-in. Mobile (<=767px): captions/content vary in
+   height, so slides show/hide instead of overlapping.
+   ========================================================================== */
+
+.rl-slider {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.rl-slider-inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.rl-slides {
+  flex: 1;
+  display: grid;
+  overflow: hidden;
+}
+
+.rl-slide {
+  grid-area: 1 / 1;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  /* True crossfade (dissolve): delay the visibility flip to the end of the
+     fade so the outgoing slide stays visible while it fades out and the
+     incoming slide fades in over it. Without the delayed visibility, an
+     inactive slide would flip to hidden instantly and only the incoming
+     slide's fade-in would be seen (fade-in-only, not a crossfade). */
+  transition: opacity 0.6s ease-in-out, visibility 0s linear 0.6s;
+}
+
+.rl-slide.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out, visibility 0s;
+}
+
+.rl-slider-nav {
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  color: var(--color-text);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.rl-slider-nav:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.rl-slider-prev { margin-right: 15px; }
+.rl-slider-next { margin-left: 15px; }
+
+.rl-slider-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-top: 0;
+}
+
+.rl-slider-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.rl-slider-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-text);
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.rl-slider-dot:hover::after {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.rl-slider-dot.active::after {
+  background: var(--color-text);
+}
+
+@media (max-width: 767px) {
+  .rl-slides { display: block; }
+  .rl-slide { display: none; visibility: visible; opacity: 1; }
+  .rl-slide.active { display: block; }
+  .rl-slider-nav { width: 36px; height: 36px; }
+  .rl-slider-prev { margin-right: 10px; }
+  .rl-slider-next { margin-left: 10px; }
+}
+
+@media (max-width: 500px) {
+  .rl-slider-inner { flex-wrap: wrap; }
+  .rl-slides { order: 1; width: 100%; }
+  .rl-slider-nav { width: 40px; height: 40px; }
+  .rl-slider-prev { order: 2; margin: 15px 10px 0 0; }
+  .rl-slider-next { order: 3; margin: 15px 0 0 10px; }
+  .rl-slider-pagination { order: 4; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rl-slide,
+  .rl-slider-nav,
+  .rl-slider-dot {
+    transition: none !important;
+  }
+}

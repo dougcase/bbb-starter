@@ -66,7 +66,7 @@
   <script src="/js/bootstrap.bundle.min.js"></script>
 
   <!-- Site Scripts -->
-  <script src="/js/scripts.js?v=20260303"></script>
+  <script src="/js/scripts.js?v=20260717"></script>
 
 </body>
 </html>
