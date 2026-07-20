@@ -74,8 +74,13 @@ Options -Indexes
 
 # --------------------------------------------------------------------------
 # Sensitive File Protection
+#
+# .log is load-bearing: git-deploy.php writes deploy.log to web root, and it
+# was found publicly readable on 14 managed sites (audit 2026-07-19), exposing
+# GitHub webhook payloads — committer email addresses, private repo SSH URLs,
+# and full commit history. Every site built from this template inherited it.
 # --------------------------------------------------------------------------
-<FilesMatch "^\.git|\.htaccess|\.env|business-config\.php">
+<FilesMatch "^\.git|\.htaccess|\.env|business-config\.php|\.(log|sql|bak|old|orig|save|swp)$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
